@@ -1,0 +1,168 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{59E24844-A488-483D-8559-DD2E02A6D1E9}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="MainProgram\Core.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Plugins\Plugin1\Plugin1.dproj">
+            <Dependencies>SDKTypeLib\PluginAPIWrapper.dproj</Dependencies>
+        </Projects>
+        <Projects Include="TestCoreProgram\TestCore.dproj">
+            <Dependencies>TestDLLProgram\TestDLL.dproj;SDKTypeLib\PluginAPIWrapper.dproj</Dependencies>
+        </Projects>
+        <Projects Include="TestCoreProgram\ENU\TestCore_ENU.bdsproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TestCoreProgram\DEU\TestCore_DEU.bdsproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TestCoreProgram\RUS\TestCore_RUS.bdsproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TestDLLProgram\TestDLL.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="SDKTypeLib\PluginAPIWrapper.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TestCore2\TestCore2.dproj">
+            <Dependencies>SDKTypeLib\PluginAPIWrapper.dproj</Dependencies>
+        </Projects>
+        <Projects Include="TestDLL2\TestDLL2.dproj">
+            <Dependencies>SDKTypeLib\PluginAPIWrapper.dproj</Dependencies>
+        </Projects>
+        <Projects Include="TestDLL3\TestDLL3.dproj">
+            <Dependencies>SDKTypeLib\PluginAPIWrapper.dproj;TestCore2\TestCore2.dproj</Dependencies>
+        </Projects>
+        <Projects Include="CoreVCL\CoreVCL.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Core">
+        <MSBuild Projects="MainProgram\Core.dproj"/>
+    </Target>
+    <Target Name="Core:Clean">
+        <MSBuild Projects="MainProgram\Core.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Core:Make">
+        <MSBuild Projects="MainProgram\Core.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Plugin1" DependsOnTargets="PluginAPIWrapper">
+        <MSBuild Projects="Plugins\Plugin1\Plugin1.dproj"/>
+    </Target>
+    <Target Name="Plugin1:Clean" DependsOnTargets="PluginAPIWrapper:Clean">
+        <MSBuild Projects="Plugins\Plugin1\Plugin1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Plugin1:Make" DependsOnTargets="PluginAPIWrapper:Make">
+        <MSBuild Projects="Plugins\Plugin1\Plugin1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TestCore" DependsOnTargets="TestDLL;PluginAPIWrapper">
+        <MSBuild Projects="TestCoreProgram\TestCore.dproj"/>
+    </Target>
+    <Target Name="TestCore:Clean" DependsOnTargets="TestDLL:Clean;PluginAPIWrapper:Clean">
+        <MSBuild Projects="TestCoreProgram\TestCore.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestCore:Make" DependsOnTargets="TestDLL:Make;PluginAPIWrapper:Make">
+        <MSBuild Projects="TestCoreProgram\TestCore.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TestCore_ENU">
+        <MSBuild Projects="TestCoreProgram\ENU\TestCore_ENU.bdsproj"/>
+    </Target>
+    <Target Name="TestCore_ENU:Clean">
+        <MSBuild Projects="TestCoreProgram\ENU\TestCore_ENU.bdsproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestCore_ENU:Make">
+        <MSBuild Projects="TestCoreProgram\ENU\TestCore_ENU.bdsproj" Targets="Make"/>
+    </Target>
+    <Target Name="TestCore_DEU">
+        <MSBuild Projects="TestCoreProgram\DEU\TestCore_DEU.bdsproj"/>
+    </Target>
+    <Target Name="TestCore_DEU:Clean">
+        <MSBuild Projects="TestCoreProgram\DEU\TestCore_DEU.bdsproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestCore_DEU:Make">
+        <MSBuild Projects="TestCoreProgram\DEU\TestCore_DEU.bdsproj" Targets="Make"/>
+    </Target>
+    <Target Name="TestCore_RUS">
+        <MSBuild Projects="TestCoreProgram\RUS\TestCore_RUS.bdsproj"/>
+    </Target>
+    <Target Name="TestCore_RUS:Clean">
+        <MSBuild Projects="TestCoreProgram\RUS\TestCore_RUS.bdsproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestCore_RUS:Make">
+        <MSBuild Projects="TestCoreProgram\RUS\TestCore_RUS.bdsproj" Targets="Make"/>
+    </Target>
+    <Target Name="TestDLL">
+        <MSBuild Projects="TestDLLProgram\TestDLL.dproj"/>
+    </Target>
+    <Target Name="TestDLL:Clean">
+        <MSBuild Projects="TestDLLProgram\TestDLL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestDLL:Make">
+        <MSBuild Projects="TestDLLProgram\TestDLL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PluginAPIWrapper">
+        <MSBuild Projects="SDKTypeLib\PluginAPIWrapper.dproj"/>
+    </Target>
+    <Target Name="PluginAPIWrapper:Clean">
+        <MSBuild Projects="SDKTypeLib\PluginAPIWrapper.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PluginAPIWrapper:Make">
+        <MSBuild Projects="SDKTypeLib\PluginAPIWrapper.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TestCore2" DependsOnTargets="PluginAPIWrapper">
+        <MSBuild Projects="TestCore2\TestCore2.dproj"/>
+    </Target>
+    <Target Name="TestCore2:Clean" DependsOnTargets="PluginAPIWrapper:Clean">
+        <MSBuild Projects="TestCore2\TestCore2.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestCore2:Make" DependsOnTargets="PluginAPIWrapper:Make">
+        <MSBuild Projects="TestCore2\TestCore2.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TestDLL2" DependsOnTargets="PluginAPIWrapper">
+        <MSBuild Projects="TestDLL2\TestDLL2.dproj"/>
+    </Target>
+    <Target Name="TestDLL2:Clean" DependsOnTargets="PluginAPIWrapper:Clean">
+        <MSBuild Projects="TestDLL2\TestDLL2.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestDLL2:Make" DependsOnTargets="PluginAPIWrapper:Make">
+        <MSBuild Projects="TestDLL2\TestDLL2.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TestDLL3" DependsOnTargets="PluginAPIWrapper;TestCore2">
+        <MSBuild Projects="TestDLL3\TestDLL3.dproj"/>
+    </Target>
+    <Target Name="TestDLL3:Clean" DependsOnTargets="PluginAPIWrapper:Clean;TestCore2:Clean">
+        <MSBuild Projects="TestDLL3\TestDLL3.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestDLL3:Make" DependsOnTargets="PluginAPIWrapper:Make;TestCore2:Make">
+        <MSBuild Projects="TestDLL3\TestDLL3.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CoreVCL">
+        <MSBuild Projects="CoreVCL\CoreVCL.dproj"/>
+    </Target>
+    <Target Name="CoreVCL:Clean">
+        <MSBuild Projects="CoreVCL\CoreVCL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CoreVCL:Make">
+        <MSBuild Projects="CoreVCL\CoreVCL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Core;Plugin1;TestCore;TestCore_ENU;TestCore_DEU;TestCore_RUS;TestDLL;PluginAPIWrapper;TestCore2;TestDLL2;TestDLL3;CoreVCL"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Core:Clean;Plugin1:Clean;TestCore:Clean;TestCore_ENU:Clean;TestCore_DEU:Clean;TestCore_RUS:Clean;TestDLL:Clean;PluginAPIWrapper:Clean;TestCore2:Clean;TestDLL2:Clean;TestDLL3:Clean;CoreVCL:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Core:Make;Plugin1:Make;TestCore:Make;TestCore_ENU:Make;TestCore_DEU:Make;TestCore_RUS:Make;TestDLL:Make;PluginAPIWrapper:Make;TestCore2:Make;TestDLL2:Make;TestDLL3:Make;CoreVCL:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
