@@ -50,7 +50,7 @@ begin
     Res:=APIInstance;
     Result := S_OK;
 
-    raise EInvalidCast.Create('Test message invalid cast 33333');
+  //  raise EInvalidCast.Create('Test message invalid cast 33333');
   except
     on E: Exception do
       Result := uSafecallExceptions.CustomHandleSafeCallException(APIInstance as TObject, E, ExceptAddr);
